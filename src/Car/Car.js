@@ -1,9 +1,8 @@
 import React from "react";
 
-export default () => (
+export default props => (
   <div>
-    <p>Сумма</p>
-    <p><strong>1 + 1 = {1 + 1}</strong></p>
-    <p><strong>rnd = {Math.round(Math.random() * 100)}</strong></p>
+    <p>Name:<strong>{props.name}</strong></p>
+    <p>Year: <strong>{props.year}</strong></p>
   </div>
 )

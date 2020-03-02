@@ -13,8 +13,9 @@ class App extends Component {
       <div className="App" style={divStyle}>
         <h1>Hi!</h1>
 
-        <Car/>
-        <Car/>
+        <Car name={'UAZ'} year={(2015)}/>
+        <Car name="Audi" year={2016}/>
+        <Car name={'Mazda'} year={(2010)}/>
       </div>
     );
   }
