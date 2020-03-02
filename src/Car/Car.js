@@ -1,22 +1,9 @@
 import React from "react";
 
-// function Car() {
-//   return (
-//     <h2>-- Hi --</h2>
-//   )
-// }
-
-// const car = () => {
-//   return (
-//     <h2>--- Hi ---</h2>
-//   )
-// }
-
-// const car = () => <h2>!-- Hi --!</h2>
-
-// export default car
-
-export default () => (<div>
-  какойто текст
-  <strong> жирный текст</strong>
-</div>)
+export default () => (
+  <div>
+    <p>Сумма</p>
+    <p><strong>1 + 1 = {1 + 1}</strong></p>
+    <p><strong>rnd = {Math.round(Math.random() * 100)}</strong></p>
+  </div>
+)
