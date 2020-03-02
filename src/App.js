@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div>
-      <div className="App">
-        <h1>Hi!</h1>
+class App extends Component {
+  render() {
+    const divStyle = {
+      'textAlign': 'center'
+    }
+
+    return (
+      <div className="App" style={divStyle}>
+        <h1 style={{color: 'blue', fontSize: '44px'}}>Hi!</h1>
       </div>
-      <p>Hell</p>
-    </div>
-  );
+    );
+  }
 
   // return React.createElement(
   //   'div',
