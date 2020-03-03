@@ -6,9 +6,9 @@ import Car from "./Car/Car";
 class App extends Component {
   state = {
     cars: [
-      {name: 'UAZ', year: 2015},
-      {name: 'Audi', year: 2016},
-      {name: 'Mazda', year: 2010},
+      {id: 1, name: 'UAZ', year: 2015},
+      {id: 2, name: 'Audi', year: 2016},
+      {id: 3, name: 'Mazda', year: 2010},
     ],
     pageTitle: 'React'
   }
@@ -37,21 +37,18 @@ class App extends Component {
         <br/>
         <button onClick={this.changeTitleHandler.bind(this, ' -- React -- ')}>Change title</button>
 
-        <Car
-          name={cars[0].name}
-          year={cars[0].year}
-          onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)}
-        />
-        <Car
-          name={cars[1].name}
-          year={cars[1].year}
-          onChangeTitle={() => this.changeTitleHandler(cars[1].name)}
-        />
-        <Car
-          name={cars[2].name}
-          year={cars[2].year}
-          onChangeTitle={() => this.changeTitleHandler(cars[2].name)}
-        />
+        {this.state.cars.map(car => {
+          return (
+            <Car
+              key={car.id}
+              name={car.name}
+              year={car.year}
+              onChangeTitle={() => {
+                this.changeTitleHandler(car.name)
+              }}
+            />
+          )
+        })}
       </div>
     );
   }
