@@ -13,9 +13,12 @@ class App extends Component {
     pageTitle: 'React'
   }
 
-  changeTitleHandler = (newTitle, newTitleSufiks) => {
-    console.log(newTitleSufiks)
-    this.setState({pageTitle: newTitle + (typeof newTitleSufiks === 'String' ? newTitleSufiks : '')})
+  changeTitleHandler = (newTitle) => {
+    this.setState({pageTitle: newTitle})
+  }
+
+  handleInput = event => {
+    this.changeTitleHandler(event.target.value)
   }
 
   render() {
@@ -29,12 +32,15 @@ class App extends Component {
       <div className="App" style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
 
+        <input type="text" onChange={this.handleInput.bind(this)}/>
+
+        <br/>
         <button onClick={this.changeTitleHandler.bind(this, ' -- React -- ')}>Change title</button>
 
         <Car
           name={cars[0].name}
           year={cars[0].year}
-          onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name, cars[0].year.toString())}
+          onChangeTitle={this.changeTitleHandler.bind(this, cars[0].name)}
         />
         <Car
           name={cars[1].name}
