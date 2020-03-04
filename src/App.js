@@ -11,7 +11,7 @@ class App extends Component {
       {id: 3, name: 'Mazda', year: 2010},
     ],
     pageTitle: 'React',
-    showCars: false,
+    showCars: true,
   }
 
   changeTitleHandler = pageTitle => this.setState({pageTitle})
@@ -22,6 +22,20 @@ class App extends Component {
     })
   }
 
+  onChangeName = (name, id) => {
+    const cars = [...this.state.cars]
+    cars[id].name = name
+    this.setState({cars})
+
+  }
+
+  deleteCarHandler = (id) => {
+    console.log(id)
+    const cars = this.state.cars.concat()
+    cars.splice(id, 1)
+    this.setState({cars})
+  }
+
   render() {
     const divStyle = {
       'textAlign': 'center'
@@ -30,13 +44,15 @@ class App extends Component {
     let cars = null
 
     if (this.state.showCars) {
-      cars = this.state.cars.map((car) => {
+      cars = this.state.cars.map((car, index) => {
         return (
           <Car
-            key={car.id}
+            key={index}
             name={car.name}
             year={car.year}
             onChangeTitle={() => this.changeTitleHandler(car.name)}
+            onChangeName={event => this.onChangeName(event.target.value, index)}
+            onDelete={this.deleteCarHandler.bind(this, index)}
           />
         )
       })
@@ -50,19 +66,6 @@ class App extends Component {
 
         {cars}
 
-        {/*{this.state.showCars ?*/}
-        {/*  this.state.cars.map((car) => {*/}
-        {/*    return (*/}
-        {/*      <Car*/}
-        {/*        key={car.id}*/}
-        {/*        name={car.name}*/}
-        {/*        year={car.year}*/}
-        {/*        onChangeTitle={() => this.changeTitleHandler(car.name)}*/}
-        {/*      />*/}
-        {/*    )*/}
-        {/*  })*/}
-        {/*  : null*/}
-        {/*}*/}
       </div>
     )
   }
