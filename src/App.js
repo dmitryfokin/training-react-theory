@@ -10,15 +10,16 @@ class App extends Component {
       {id: 2, name: 'Audi', year: 2016},
       {id: 3, name: 'Mazda', year: 2010},
     ],
-    pageTitle: 'React'
+    pageTitle: 'React',
+    showCars: false,
   }
 
-  changeTitleHandler = (newTitle) => {
-    this.setState({pageTitle: newTitle})
-  }
+  changeTitleHandler = pageTitle => this.setState({pageTitle})
 
-  handleInput = event => {
-    this.changeTitleHandler(event.target.value)
+  toggleShowCarsHandler = () => {
+    this.setState({
+      showCars: !this.state.showCars
+    })
   }
 
   render() {
@@ -26,31 +27,44 @@ class App extends Component {
       'textAlign': 'center'
     }
 
-    const cars = this.state.cars
+    let cars = null
+
+    if (this.state.showCars) {
+      cars = this.state.cars.map((car) => {
+        return (
+          <Car
+            key={car.id}
+            name={car.name}
+            year={car.year}
+            onChangeTitle={() => this.changeTitleHandler(car.name)}
+          />
+        )
+      })
+    }
 
     return (
       <div className="App" style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
 
-        <input type="text" onChange={this.handleInput.bind(this)}/>
+        <button onClick={this.toggleShowCarsHandler}>Toggle cars</button>
 
-        <br/>
-        <button onClick={this.changeTitleHandler.bind(this, ' -- React -- ')}>Change title</button>
+        {cars}
 
-        {this.state.cars.map(car => {
-          return (
-            <Car
-              key={car.id}
-              name={car.name}
-              year={car.year}
-              onChangeTitle={() => {
-                this.changeTitleHandler(car.name)
-              }}
-            />
-          )
-        })}
+        {/*{this.state.showCars ?*/}
+        {/*  this.state.cars.map((car) => {*/}
+        {/*    return (*/}
+        {/*      <Car*/}
+        {/*        key={car.id}*/}
+        {/*        name={car.name}*/}
+        {/*        year={car.year}*/}
+        {/*        onChangeTitle={() => this.changeTitleHandler(car.name)}*/}
+        {/*      />*/}
+        {/*    )*/}
+        {/*  })*/}
+        {/*  : null*/}
+        {/*}*/}
       </div>
-    );
+    )
   }
 }
 
