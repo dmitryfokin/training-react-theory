@@ -57,15 +57,21 @@ class App extends Component {
         )
       })
     }
-
+    console.log(cars)
     return (
       <div className="App" style={divStyle}>
         <h1>{this.state.pageTitle}</h1>
 
         <button onClick={this.toggleShowCarsHandler}>Toggle cars</button>
-
-        {cars}
-
+        <div style={{
+          width: 400,
+          margin: 'auto',
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          boxShadow: '-1px 3px 8px 0px rgba(0,0,0,14)'
+        }}>
+          {cars}
+        </div>
       </div>
     )
   }

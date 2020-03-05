@@ -1,15 +1,30 @@
-import React from "react";
+import React from "react"
 
-export default props => (
-  <div style={{
-    border: '2px solid #eee',
-    marginBottom: '10px',
-    padding: '5px',
-    width: '300px',
-  }}>
-    <p>Name:<strong>{props.name}</strong></p>
-    <p>Year: <strong>{props.year}</strong></p>
-    <input type="text" onChange={props.onChangeName} value={props.name}/>
-    <button onClick={props.onDelete}>Delete</button>
-  </div>
-)
+import './Car.css'
+
+export default props => {
+  const inputClasses = ['input']
+
+  if (props.name === '') {
+    inputClasses.push('red')
+  } else {
+    inputClasses.push('green')
+  }
+
+  if (props.name.length > 4) {
+    inputClasses.push('bold')
+  }
+  return (
+    <div className="Car">
+      <p>Name:<strong>{props.name}</strong></p>
+      <p>Year: <strong>{props.year}</strong></p>
+      <input
+        type="text"
+        onChange={props.onChangeName}
+        value={props.name}
+        className={inputClasses.join(' ')}
+      />
+      <button onClick={props.onDelete}>Delete</button>
+    </div>
+  )
+}
